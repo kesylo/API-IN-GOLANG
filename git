@@ -1,0 +1,11 @@
+# create a branch
+git branch loic
+
+# display all branches
+git branch
+
+# Switch to a branch
+git checkout loic
+
+# Show changes
+git status
