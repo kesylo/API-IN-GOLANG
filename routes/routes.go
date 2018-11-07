@@ -2,11 +2,13 @@ package routes
 
 import (
 	"net/http"
-	"github.com/gorilla/mux"
+
+	"../api"
 	"../middleware"
 	"../models"
 	"../sessions"
 	"../utils"
+	"github.com/gorilla/mux"
 )
 
 func NewRouter() *mux.Router {
@@ -16,6 +18,11 @@ func NewRouter() *mux.Router {
 	r.HandleFunc("/login", loginGetHandler).Methods("GET")
 	r.HandleFunc("/login", loginPostHandler).Methods("POST")
 	r.HandleFunc("/logout", logoutGetHandler).Methods("GET")
+
+	// facts teller
+	r.HandleFunc("/facts", middleware.AuthRequired(factsGetHandler)).Methods("GET")
+	r.HandleFunc("/facts", middleware.AuthRequired(factsPostHandler)).Methods("POST")
+
 	r.HandleFunc("/register", registerGetHandler).Methods("GET")
 	r.HandleFunc("/register", registerPostHandler).Methods("POST")
 	fs := http.FileServer(http.Dir("./static/"))
@@ -25,6 +32,32 @@ func NewRouter() *mux.Router {
 	return r
 }
 
+func factsPostHandler(w http.ResponseWriter, r *http.Request) {
+	session, _ := sessions.Store.Get(r, "session")
+	untypedUserId := session.Values["user_id"]
+	userId, ok := untypedUserId.(int64)
+	if !ok {
+		utils.InternalServerError(w)
+		return
+	}
+	r.ParseForm()
+	body := r.PostForm.Get("update")
+	err := models.PostUpdate(userId, body)
+	if err != nil {
+		utils.InternalServerError(w)
+		return
+	}
+	http.Redirect(w, r, "/", 302)
+}
+
+func factsGetHandler(w http.ResponseWriter, r *http.Request) {
+	utils.ExecuteTemplate(w, "facts.html", struct {
+		Title string
+	}{
+		Title: api.Getfact(),
+	})
+}
+
 func indexGetHandler(w http.ResponseWriter, r *http.Request) {
 	updates, err := models.GetAllUpdates()
 	if err != nil {
@@ -32,12 +65,12 @@ func indexGetHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	utils.ExecuteTemplate(w, "index.html", struct {
-		Title string
-		Updates []*models.Update
+		Title       string
+		Updates     []*models.Update
 		DisplayForm bool
-	} {
-		Title: "All updates",
-		Updates: updates,
+	}{
+		Title:       "All updates",
+		Updates:     updates,
 		DisplayForm: true,
 	})
 }
@@ -86,12 +119,12 @@ func userGetHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	utils.ExecuteTemplate(w, "index.html", struct {
-		Title string
-		Updates []*models.Update
+		Title       string
+		Updates     []*models.Update
 		DisplayForm bool
-		} {
-		Title: username,
-		Updates: updates,
+	}{
+		Title:       username,
+		Updates:     updates,
 		DisplayForm: currentUserId == userId,
 	})
 }

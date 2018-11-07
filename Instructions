@@ -1,0 +1,8 @@
+Some instructions to get started
+
+- You mainly have to edit the routes.go file. Don't remove any methods. Just add yours
+- Add your API to the API folder
+- You need to create an html page in the templates folder (mine is facts.html) that will display your API
+- I also put some git commands in the Git file at the root to help. I have created a branch for you already called "Avni". just select that
+  branch and start working on it.
+- If you have css a integer, put it in static with the other css

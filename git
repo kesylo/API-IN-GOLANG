@@ -9,3 +9,6 @@ git checkout loic
 
 # Show changes
 git status
+
+# push to branch
+git push -u origin loic
