@@ -1,5 +1,6 @@
 Some instructions to get started
 
+- Install redis server
 - You mainly have to edit the routes.go file. Don't remove any methods. Just add yours
 - Add your API to the API folder
 - You need to create an html page in the templates folder (mine is facts.html) that will display your API
