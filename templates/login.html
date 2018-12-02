@@ -1,17 +1,54 @@
-<html>
-    <head>
-        <title>Login</title>
-    </head>
-    <body>
-        {{ if . }}
-        <div class="error">{{ . }}</div>
-        {{ end }}
-        <form method="POST">
-            <div>Username: <input name="username"></div>
-            <div>Password: <input name="password"></div>
-            <div>
-                <button type="submit">Login</button>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../static/img-loic/api.ico">
+
+    <title>Login-API-in-Golang</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/signin.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+        
+    <form class="form-signin" method="POST">
+      <img class="mb-4" src="../static/img-loic/api.ico" alt="" width="122" height="122">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+      {{ if . }}
+        <div class="error">
+            <div class="alert alert-danger" role="alert">
+                {{ . }}
             </div>
-        </form>
-    </body>
+        </div>
+      {{ end }}
+
+      <label for="username" class="sr-only">username</label>
+      <input type="text" class="form-control" id="username" name="username" placeholder="username" required autofocus>
+      <label for="password" class="sr-only">password</label>
+      <input type="password" id="password" class="form-control" placeholder="password" name="password" required>
+
+
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <p>
+        <nav>
+            <a href="/register">I don't have an account</a>
+        </nav>
+      </p>
+      <p class="mt-5 mb-3 text-muted">&copy; ISIB 2017-2018</p>
+    </form>
+  </body>
 </html>

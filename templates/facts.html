@@ -1,18 +1,54 @@
-<html>
-    <head>
-        <title>Login</title>
-    </head>
-    <body>
-        {{ if . }}
-        <div class="error">{{ . }}</div>
-        {{ end }}
-        <form method="POST">
-            <h1>{{ .Title }}</h1>
-            <div>Username: <input name="username"></div>
-            <div>Password: <input name="password"></div>
-            <div>
-                <button type="submit">Login</button>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../static/img-loic/fact.ico">
+
+    <title>Facts teller</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/facts.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">Facts teller API</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="#">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover">
+            <div class="jumbotron">
+                    <h1 class="display-4"><p class="text-primary">Did you know:</p></h1>
+                  
+                    <h1 class="display-6"><p class="text-dark">{{ .Title }}</p></h1>
+                    <hr class="my-2">
             </div>
-        </form>
-    </body>
+      </main>
+
+      
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Desygned with <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://github.com/kesylo">@keming</a>.</p>
+        </div>
+      </footer>
+    </div>
+
+
+  </body>
 </html>
