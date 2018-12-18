@@ -1,5 +1,16 @@
+# add files to git
+git add *
+
+# Commit changes
+git commit -m "message"
+
+# push to repo
+git push origin avni
+
 # create a branch
 git branch loic
+
+#################### Branch info ####################################
 
 # display all branches
 git branch
@@ -12,3 +23,6 @@ git status
 
 # push to branch
 git push -u origin loic
+
+# push with ssh
+git remote set-url origin git@github.com:kesylo/API-IN-GOLANG.git

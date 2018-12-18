@@ -22,6 +22,9 @@ func NewRouter() *mux.Router {
 	// facts teller
 	r.HandleFunc("/facts", middleware.AuthRequired(factsGetHandler)).Methods("GET")
 	r.HandleFunc("/facts", middleware.AuthRequired(factsPostHandler)).Methods("POST")
+	//quotes avni
+	r.HandleFunc("/quotes", middleware.AuthRequired(quotesGetHandler)).Methods("GET")
+	r.HandleFunc("/quotes", middleware.AuthRequired(quotesPostHandler)).Methods("POST")
 
 	r.HandleFunc("/register", registerGetHandler).Methods("GET")
 	r.HandleFunc("/register", registerPostHandler).Methods("POST")
@@ -30,6 +33,7 @@ func NewRouter() *mux.Router {
 	r.HandleFunc("/{username}",
 		middleware.AuthRequired(userGetHandler)).Methods("GET")
 	return r
+
 }
 
 func factsPostHandler(w http.ResponseWriter, r *http.Request) {
@@ -55,6 +59,35 @@ func factsGetHandler(w http.ResponseWriter, r *http.Request) {
 		Title string
 	}{
 		Title: api.Getfact(),
+	})
+}
+func quotesPostHandler(w http.ResponseWriter, r *http.Request) {
+	session, _ := sessions.Store.Get(r, "session")
+	untypedUserId := session.Values["user_id"]
+	userId, ok := untypedUserId.(int64)
+	if !ok {
+		utils.InternalServerError(w)
+		return
+	}
+	r.ParseForm()
+	body := r.PostForm.Get("update")
+	err := models.PostUpdate(userId, body)
+	if err != nil {
+		utils.InternalServerError(w)
+		return
+	}
+	http.Redirect(w, r, "/", 303)
+}
+
+func quotesGetHandler(w http.ResponseWriter, r *http.Request) {
+	utils.ExecuteTemplate(w, "quotes.html", struct {
+		Title  string
+		Quotes string
+		Author string
+	}{
+		Quotes, _ = api.GetQuotes(),
+		//Quotes: api.GetQuotesBody(),
+		//Author: api.GetQuotesAuthor(),
 	})
 }
 
