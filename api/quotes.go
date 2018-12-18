@@ -46,7 +46,7 @@ func ReadJSON(s string) Message {
 	return m
 }
 
-func GetQuotes() (string, string) {
+func GetQuotes() string {
 
 	var quotesBody string
 	var quotesAuthor string
@@ -62,7 +62,7 @@ func GetQuotes() (string, string) {
 
 	aQuote = string("\n" + quotesBody + "\n" + quotesAuthor)
 
-	return "", aQuote
+	return aQuote
 
 }
 
