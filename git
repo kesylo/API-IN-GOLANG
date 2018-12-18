@@ -10,7 +10,10 @@ git push origin avni
 # create a branch
 git branch loic
 
-#################### Branch info ####################################
+#################### Branch info #################################
+
+# pull from specific branch
+git pull origin avni
 
 # display all branches
 git branch
