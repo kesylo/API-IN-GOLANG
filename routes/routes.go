@@ -80,15 +80,14 @@ func quotesPostHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func quotesGetHandler(w http.ResponseWriter, r *http.Request) {
-	utils.ExecuteTemplate(w, "quotes.html", struct {
-		Title  string
+	data := struct {
 		Quotes string
 		Author string
 	}{
-		Title: api.GetQuotes(),
-		//Quotes: api.GetQuotesBody(),
-		//Author: api.GetQuotesAuthor(),
-	})
+		Quotes: api.GetQuotesB(1),
+		Author: api.GetQuotesB(2),
+	}
+	utils.ExecuteTemplate(w, "quotes.html", data)
 }
 
 func indexGetHandler(w http.ResponseWriter, r *http.Request) {
@@ -218,3 +217,28 @@ func registerPostHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	http.Redirect(w, r, "/login", 302)
 }
+
+/*
+func apiGethandler(w http.ResponseWriter, r *http.Request){
+	var apichoice int
+	var nameHtml string
+	apichoice =rand.Intn(3)
+
+	 if apichoice == 1{
+		nameHtml= "facts.html"
+		utils.ExecuteTemplate(w, nameHtml,struct{
+		   Title string
+		   }{
+			   Title: api.Getfact(),
+
+		   })
+	 }
+
+	 if apichoice == 2{
+		nameHtml = "quotes.html"
+		utils.ExecuteTemplate(w, nameHtml,struct{
+		   Title string
+		   }{
+			   Title: api.Getfact(),
+		   })
+	 }*/
