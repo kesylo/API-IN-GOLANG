@@ -85,7 +85,7 @@ func quotesGetHandler(w http.ResponseWriter, r *http.Request) {
 		Quotes string
 		Author string
 	}{
-		Title: api.GetQuotes(),
+		// /Title: api.GetQuotes(),
 		//Quotes: api.GetQuotesBody(),
 		//Author: api.GetQuotesAuthor(),
 	})
