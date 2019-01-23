@@ -25,6 +25,9 @@ func NewRouter() *mux.Router {
 	//quotes avni
 	r.HandleFunc("/quotes", middleware.AuthRequired(quotesGetHandler)).Methods("GET")
 	r.HandleFunc("/quotes", middleware.AuthRequired(quotesPostHandler)).Methods("POST")
+	// quotes avni v2
+	r.HandleFunc("/quotesV2", middleware.AuthRequired(quotesV2GetHandler)).Methods("GET")
+	r.HandleFunc("/quotesV2", middleware.AuthRequired(quotesPostHandler)).Methods("POST")
 
 	r.HandleFunc("/register", registerGetHandler).Methods("GET")
 	r.HandleFunc("/register", registerPostHandler).Methods("POST")
@@ -61,6 +64,7 @@ func factsGetHandler(w http.ResponseWriter, r *http.Request) {
 		Title: api.Getfact(),
 	})
 }
+
 func quotesPostHandler(w http.ResponseWriter, r *http.Request) {
 	session, _ := sessions.Store.Get(r, "session")
 	untypedUserId := session.Values["user_id"]
@@ -76,7 +80,7 @@ func quotesPostHandler(w http.ResponseWriter, r *http.Request) {
 		utils.InternalServerError(w)
 		return
 	}
-	http.Redirect(w, r, "/", 303)
+	http.Redirect(w, r, "/", 302)
 }
 
 func quotesGetHandler(w http.ResponseWriter, r *http.Request) {
@@ -88,6 +92,23 @@ func quotesGetHandler(w http.ResponseWriter, r *http.Request) {
 		Author: api.GetQuotesB(2),
 	}
 	utils.ExecuteTemplate(w, "quotes.html", data)
+}
+func quotesV2GetHandler(w http.ResponseWriter, r *http.Request) {
+	data := struct {
+		//Title     string
+		Quotes    string
+		Author    string
+		Imagelink string
+		Title     string
+		Message   string
+	}{
+		Quotes:    api.GetQuoteV2(2),
+		Author:    api.GetQuoteV2(1),
+		Imagelink: api.GetQuoteV2(3),
+		Title:     api.GetQuoteV2(4),
+		Message:   api.GetQuoteV2(5),
+	}
+	utils.ExecuteTemplate(w, "quotesV2.html", data)
 }
 
 func indexGetHandler(w http.ResponseWriter, r *http.Request) {
