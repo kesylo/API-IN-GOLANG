@@ -7,3 +7,4 @@ Some instructions to get started
 - I also put some git commands in the Git file at the root to help. I have created a branch for you already called "Avni". just select that
   branch and start working on it.
 - If you have css a integer, put it in static with the other css
+- install  go get -u github.com/tidwall/gjson

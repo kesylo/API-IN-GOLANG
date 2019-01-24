@@ -95,7 +95,6 @@ func quotesGetHandler(w http.ResponseWriter, r *http.Request) {
 }
 func quotesV2GetHandler(w http.ResponseWriter, r *http.Request) {
 	data := struct {
-		//Title     string
 		Quotes    string
 		Author    string
 		Imagelink string
@@ -238,28 +237,3 @@ func registerPostHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	http.Redirect(w, r, "/login", 302)
 }
-
-/*
-func apiGethandler(w http.ResponseWriter, r *http.Request){
-	var apichoice int
-	var nameHtml string
-	apichoice =rand.Intn(3)
-
-	 if apichoice == 1{
-		nameHtml= "facts.html"
-		utils.ExecuteTemplate(w, nameHtml,struct{
-		   Title string
-		   }{
-			   Title: api.Getfact(),
-
-		   })
-	 }
-
-	 if apichoice == 2{
-		nameHtml = "quotes.html"
-		utils.ExecuteTemplate(w, nameHtml,struct{
-		   Title string
-		   }{
-			   Title: api.Getfact(),
-		   })
-	 }*/
