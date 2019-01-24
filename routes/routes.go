@@ -22,9 +22,9 @@ func NewRouter() *mux.Router {
 	// facts teller
 	r.HandleFunc("/facts", middleware.AuthRequired(factsGetHandler)).Methods("GET")
 	r.HandleFunc("/facts", middleware.AuthRequired(factsPostHandler)).Methods("POST")
-	//quotes avni
-	r.HandleFunc("/quotes", middleware.AuthRequired(quotesGetHandler)).Methods("GET")
-	r.HandleFunc("/quotes", middleware.AuthRequired(quotesPostHandler)).Methods("POST")
+	//Calandar Antoine
+	r.HandleFunc("/calandar", middleware.AuthRequired(calandarGetHandler)).Methods("GET")
+	r.HandleFunc("/calandar", middleware.AuthRequired(calandarPostHandler)).Methods("POST")
 
 	r.HandleFunc("/register", registerGetHandler).Methods("GET")
 	r.HandleFunc("/register", registerPostHandler).Methods("POST")
@@ -33,7 +33,6 @@ func NewRouter() *mux.Router {
 	r.HandleFunc("/{username}",
 		middleware.AuthRequired(userGetHandler)).Methods("GET")
 	return r
-
 }
 
 func factsPostHandler(w http.ResponseWriter, r *http.Request) {
@@ -61,7 +60,9 @@ func factsGetHandler(w http.ResponseWriter, r *http.Request) {
 		Title: api.Getfact(),
 	})
 }
-func quotesPostHandler(w http.ResponseWriter, r *http.Request) {
+
+// fonction Get et post Calendar Antoine
+func calandarPostHandler(w http.ResponseWriter, r *http.Request) {
 	session, _ := sessions.Store.Get(r, "session")
 	untypedUserId := session.Values["user_id"]
 	userId, ok := untypedUserId.(int64)
@@ -76,18 +77,23 @@ func quotesPostHandler(w http.ResponseWriter, r *http.Request) {
 		utils.InternalServerError(w)
 		return
 	}
-	http.Redirect(w, r, "/", 303)
+	http.Redirect(w, r, "/", 304)
 }
 
-func quotesGetHandler(w http.ResponseWriter, r *http.Request) {
-	utils.ExecuteTemplate(w, "quotes.html", struct {
-		Title  string
-		Quotes string
-		Author string
+func calandarGetHandler(w http.ResponseWriter, r *http.Request) {
+	utils.ExecuteTemplate(w, "calendar.html", struct {
+		NextEventName        string
+		NextEventdate        string
+		NextEventlocation    string
+		NextEventdescription string
+		UpcommingEvents      string
 	}{
-		Quotes, _ = api.GetQuotes(),
-		//Quotes: api.GetQuotesBody(),
-		//Author: api.GetQuotesAuthor(),
+
+		NextEventName:        api.GetEvent()[0][0],
+		NextEventdate:        api.GetEvent()[0][1],
+		NextEventlocation:    api.GetEvent()[0][2],
+		NextEventdescription: api.GetEvent()[0][3],
+		UpcommingEvents:      api.GetNextEvent(),
 	})
 }
 

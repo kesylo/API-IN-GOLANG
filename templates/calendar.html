@@ -1,0 +1,85 @@
+<!doctype html>
+  <html lang="en">
+    <head>
+      <title>Calendar from Antoine</title>
+      <!-- Bootstrap core CSS -->
+      <link href="../static/bootstrap.min.css" rel="stylesheet">
+  
+      <!-- Custom styles for this template -->
+      <link href="../static/calendar.css" rel="stylesheet">
+      <link rel="icon" href="../static/img-loic/cale.ico">
+    </head>
+  
+    <body class="text-center"></body>
+  
+      <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+          <div class="inner">
+            <h3 class="masthead-brand">Antoine Verbrugghen API Google Calendar</h3>
+          </div>
+        </header>
+        <body>
+  
+      <section>
+        <div id="article">
+        <article>
+          <h1>The upcoming event!!! </h1>
+          <h1> {{ .NextEventName }}</h1>
+          <p> The event begin on  {{ .NextEventdate }}</p>
+          <p> description : {{ .NextEventdescription }}</p>
+    </article>
+        <article style="border:none;">
+          <article>
+          <h1>Other   upcoming events:</h1>
+          <p> {{ .UpcommingEvents  }}</p>
+         
+        </article><br>
+        </article></div>
+        
+        <div id="aside">
+        
+        <aside>
+          <h1>Location : </h1>
+          <p> {{.NextEventlocation}}</p>
+          <body onload="initialize()">
+   <div id="map"style= "width: 320px; height: 480px;"> </div>
+   
+  </body>
+      <script>
+         var geocoder;
+    var map;
+    function initialize() {
+      geocoder = new google.maps.Geocoder();
+      var latlng = new google.maps.LatLng(-34.397, 150.644);
+      var mapOptions = {
+        zoom: 14,
+        center: latlng
+      }
+      map = new google.maps.Map(document.getElementById('map'), mapOptions);
+   
+      var address = "{{.NextEventlocation}}";
+      geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == 'OK') {
+          map.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+          });
+        } else {
+          alert('The location is not found for the following reason: ' + status);
+        }
+      });
+    }
+  
+      </script>
+        
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_QBVni6ZKvM1U5CSM9yQ_3w-pblY1M64&callback=initMap">
+      </script>
+        </aside>
+      </div>
+      </section>
+      </body>
+      </div>
+  
+  </html>
