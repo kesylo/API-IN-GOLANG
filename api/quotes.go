@@ -82,10 +82,6 @@ func GetQuotes() string {
 }
 
 func GetQuotesB(n int) string {
-
-	//var quotesBody string
-	//var quotesAuthor string
-	//var aQuote string
 	var author string
 	var quote string
 	res := GetRequest("https://talaikis.com/api/quotes/")
@@ -99,29 +95,8 @@ func GetQuotesB(n int) string {
 		quote = m.Author
 		return quote
 	}
-	//quotesBody = m.Quote
-	//quotesAuthor = m.Author
-	//quote = m.Quote
-	//author = m.Author
-	return "" //quote + author
+
+	quote = m.Quote
+	author = m.Author
+	return quote + author
 }
-
-/*
-func GetQuotesAuthor() string {
-
-	quotesBody, quotesAuthor := GetQuotes()
-
-	return quotesAuthor + quotesBody
-}
-
-
-func GetImage() {
-
-	fileUrl := "https://en.wikipedia.org/wiki/Albert_Einstein"
-
-	err := DownloadFile("avatar.jpg", fileUrl)
-	if err != nil {
-		panic(err)
-	}
-
-}*/

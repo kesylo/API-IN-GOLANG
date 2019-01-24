@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Quotes from api theySaidSo</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/quotesV2.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center"></body>
+    <div class="cover-container d-flex h-200 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">Avni API</h3>
+        </div>
+      </header>
+      <main role="main" class="inner cover">
+        <div class="jumbotron">
+            <h1 class="display-3"><p class="text-primary">Quotes:</p></h1>
+            <h1 class="display-4"><p class="text-dark">{{ .Quotes }}</p></h1> 
+            <h1 class="display-6"><p class="text-dark">{{ .Author }}</p></h1>
+            <h1 class="display-6"><p class="text-dark">{{ .Message }}</p></h1>
+            <h1 class="display-6"><p class="text-dark">{{ .Imagelink }}</p></h1>
+             
+
+        </div>
+       <nav>
+        <meta http-equiv="refresh" content="100;URL='/'"/>
+       </nav>     
+    </div>
+  </body>
+</html>
+<!--div class="jumbotron"><h1 class="display-2"><p class="text-primary">Test</p></h1>
+            <h1 class="display-6"><p class="text-dark">{{ .Quotes }}</p></h1> 
+            <h1 class="display-6"><p class="text-dark">{{ .Author }}</p></h1>   
+            <h1 class="display-4"><p class="text-dark">{{ .Author }}</p></h1>     
+            <img src="../static/img-avni/Logo-isib.png" alt="No Img Found" style="width:30%;height:30%">   
+            <img src="../static/img-avni/img1.png" class="img-responsive" alt="No Img Found" style="width:30%;height:30%">  
+        </div--> 

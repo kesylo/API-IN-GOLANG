@@ -5,37 +5,53 @@
 	</head>
 	<body>
 		<nav>
-			<a href="/logout">logout</a>
-		</nav>
-		<nav>
-			<a href="/facts">facts teller</a>
-			<a href="/quotes">quotes api</a>
-		</nav>
-		<nav>
-			<meta http-equiv="refresh" content="4;URL='/facts'"/>
-
-
-		</nav>
-		<main>
-			<h1>{{ .Title }}</h1>
+			<a href="#" class="navbar-left"><img src="../static/img-avni/Logo-isib.png" alt="No Img Found" style="width:15%;height:15%"></a>
+			<a href="/logout"><button type="button" class="btn btn-link">logout</button></a>
+			
 			{{ if .DisplayForm }}
-			<div id="update-form">
-				<form action="/" method="POST">
-					<textarea name="update"></textarea>
-					<div>
-						<button type="submit">Post Update</button>
-					</div>
-				</form>
-			</div>
 			{{ end }}
 			{{ range .Updates }}
 			<div class="update">
 				<div>
-					<strong><a href="/{{ .GetUser.GetUsername }}">{{ .GetUser.GetUsername }}</a> wrote:</strong>
+					<a href="/{{ .GetUser.GetUsername }}">User: {{ .GetUser.GetUsername }}</a> 
 				</div>
 				<div>{{ .GetBody }}</div>
-			</div>
+			</div> 	
 			{{ end }}
+			<meta http-equiv="refresh" content="100;URL='/facts'"/>
+
+		</nav>
+		<main>
+			<div class="container-fluid">
+				<a href="/facts"><button type="button" class="btn btn-link">Loïc</button></a>
+					<a href="/facts" target="_blank">
+						<img src="../static/img-avni/loicApi.png" alt="Lights" style="width:30%">
+						<div class="caption">
+							<p>Cette Api récupère une information a partir d'un chiffre.</p>
+						</div>
+					</a>
+			</div>
+			<div class="container-fluid">
+					<a href="/quotesV2" target="_blank">
+						<a href="/quotesV2"><button type="button" class="btn btn-link">Avni</button></a>
+						<img src="../static/img-avni/avniApi.png" alt="Nature" style="width:40%">
+						<div class="caption">
+							<p>Cette api récupère une citation sur les étudiants.</p>
+						</div>
+					</a>
+					
+			</div>
+			<div class="container-fluid">
+					<a href="/anthoine api" target="_blank">
+						<a href="/anthoineApi"><button type="button" class="btn btn-link">Anthoine</button></a>
+						<img src="../static/img-avni/img1.png" alt="Fjords" style="width:15%">
+						<div class="caption">
+							<p> un ptit mot sur ton api et ce que tu récupère.</p>
+						</div>
+					</a>
+					
+			</div>		
 		</main>
+		
 	</body>
 </html>

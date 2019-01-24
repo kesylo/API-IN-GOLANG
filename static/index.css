@@ -4,23 +4,28 @@
 }
 
 body {
-    background: #f0f0f0;
+    background: #f0f0f080;
 }
 
 nav {
-    padding: 0.5em;
-    background: #fff;
+    padding: 2em;
+    background: rgba(0, 0, 0, 0.24);
     border-bottom: 1px solid #aaa;
-    text-align: right;
+    text-align: left;
 }
 
+
+
 main {
-    margin: 0 auto;
-    max-width: 640px;
+    float: left; 
+	margin: 5px;
+	text-align: left ;
+	height: 80%;
+	width: 80%;
 }
 
 main > .update {
-    padding: 0.5em;
+    padding: 4em;
     background: #fff;
     border: 1px solid #aaa;
     margin-bottom: 1em;
@@ -28,11 +33,7 @@ main > .update {
 
 #update-form {
     text-align: right;
-    margin-bottom: 1em;
+    margin-bottom: 10em;
 }
 
-#update-form textarea {
-    width: 100%;
-    margin-bottom: 0.5em;
-    resize: vertical;
-}
+
