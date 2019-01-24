@@ -1,57 +1,124 @@
-<html>
-	<head>
-		<title>{{ .Title }}</title>
-		<link rel="stylesheet" type="text/css" href="/static/index.css">
-	</head>
-	<body>
-		<nav>
-			<a href="#" class="navbar-left"><img src="../static/img-avni/Logo-isib.png" alt="No Img Found" style="width:15%;height:15%"></a>
-			<a href="/logout"><button type="button" class="btn btn-link">logout</button></a>
-			
-			{{ if .DisplayForm }}
-			{{ end }}
-			{{ range .Updates }}
-			<div class="update">
-				<div>
-					<a href="/{{ .GetUser.GetUsername }}">User: {{ .GetUser.GetUsername }}</a> 
-				</div>
-				<div>{{ .GetBody }}</div>
-			</div> 	
-			{{ end }}
-			<meta http-equiv="refresh" content="10;URL='/facts'"/>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../static/img-index/favicon.ico">
 
-		</nav>
-		<main>
-			<div class="container-fluid">
-				<a href="/facts"><button type="button" class="btn btn-link">Loïc</button></a>
-					<a href="/facts" target="_blank">
-						<img src="../static/img-avni/loicApi.png" alt="Lights" style="width:30%">
-						<div class="caption">
-							<p>Cette Api récupère une information a partir d'un chiffre.</p>
-						</div>
-					</a>
-			</div>
-			<div class="container-fluid">
-					<a href="/quotesV2" target="_blank">
-						<a href="/quotesV2"><button type="button" class="btn btn-link">Avni</button></a>
-						<img src="../static/img-avni/avniApi.png" alt="Nature" style="width:40%">
-						<div class="caption">
-							<p>Cette api récupère une citation sur les étudiants.</p>
-						</div>
-					</a>
-					
-			</div>
-			<div class="container-fluid">
-					<a href="/anthoine api" target="_blank">
-						<a href="/anthoineApi"><button type="button" class="btn btn-link">Anthoine</button></a>
-						<img src="../static/img-avni/img1.png" alt="Fjords" style="width:15%">
-						<div class="caption">
-							<p> un ptit mot sur ton api et ce que tu récupère.</p>
-						</div>
-					</a>
-					
-			</div>		
-		</main>
-		
-	</body>
+    <title>API in Golang</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/album.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+		<meta http-equiv="refresh" content="10;URL='/facts'"/>
+
+    <header>
+
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            <strong>Api Slider</strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">API IN GOLANG</h1>
+          <p class="lead text-muted">Ce site à pour but de faire défiler des informations utiles ou fun récuperées depuis des APIs.</p>
+          <p>
+            <a href="https://github.com/kesylo/API-IN-GOLANG" class="btn btn-primary my-2">Voir sur Github</a>
+          </p>
+        </div>
+      </section>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="../static/img-loic/fact.ico" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">Cette API donne des faits réels relatifs aux nombres et dates de l'histoire aussi des faits aléatoires. Amusez vous bien!</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    </div>
+                    <small class="text-muted">5 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">Cette api récupère une citation sur les étudiants.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">un ptit mot sur ton api et ce que tu récupère ANTOINNE</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    </div>
+                    <small class="text-muted">1 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+  
+      
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p>Loic, Avni et antoine &copy; API in Golang.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../static/popper.min.js"></script>
+    <script src="../static/bootstrap.min.js"></script>
+    <script src="../static/holder.min.js"></script>
+  </body>
 </html>
