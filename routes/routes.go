@@ -22,18 +22,15 @@ func NewRouter() *mux.Router {
 	// facts teller
 	r.HandleFunc("/facts", middleware.AuthRequired(factsGetHandler)).Methods("GET")
 	r.HandleFunc("/facts", middleware.AuthRequired(factsPostHandler)).Methods("POST")
-<<<<<<< HEAD
 	//quotes avni
 	r.HandleFunc("/quotes", middleware.AuthRequired(quotesGetHandler)).Methods("GET")
 	r.HandleFunc("/quotes", middleware.AuthRequired(quotesPostHandler)).Methods("POST")
 	// quotes avni v2
 	r.HandleFunc("/quotesV2", middleware.AuthRequired(quotesV2GetHandler)).Methods("GET")
 	r.HandleFunc("/quotesV2", middleware.AuthRequired(quotesPostHandler)).Methods("POST")
-=======
 	//Calandar Antoine
 	r.HandleFunc("/calandar", middleware.AuthRequired(calandarGetHandler)).Methods("GET")
 	r.HandleFunc("/calandar", middleware.AuthRequired(calandarPostHandler)).Methods("POST")
->>>>>>> 16542a957dfd611c67ff6102b5a45ac80b530e3a
 
 	r.HandleFunc("/register", registerGetHandler).Methods("GET")
 	r.HandleFunc("/register", registerPostHandler).Methods("POST")
@@ -70,12 +67,8 @@ func factsGetHandler(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-<<<<<<< HEAD
-func quotesPostHandler(w http.ResponseWriter, r *http.Request) {
-=======
 // fonction Get et post Calendar Antoine
 func calandarPostHandler(w http.ResponseWriter, r *http.Request) {
->>>>>>> 16542a957dfd611c67ff6102b5a45ac80b530e3a
 	session, _ := sessions.Store.Get(r, "session")
 	untypedUserId := session.Values["user_id"]
 	userId, ok := untypedUserId.(int64)
@@ -90,7 +83,24 @@ func calandarPostHandler(w http.ResponseWriter, r *http.Request) {
 		utils.InternalServerError(w)
 		return
 	}
-<<<<<<< HEAD
+	http.Redirect(w, r, "/", 302)
+}
+
+func quotesPostHandler(w http.ResponseWriter, r *http.Request) {
+	session, _ := sessions.Store.Get(r, "session")
+	untypedUserId := session.Values["user_id"]
+	userId, ok := untypedUserId.(int64)
+	if !ok {
+		utils.InternalServerError(w)
+		return
+	}
+	r.ParseForm()
+	body := r.PostForm.Get("update")
+	err := models.PostUpdate(userId, body)
+	if err != nil {
+		utils.InternalServerError(w)
+		return
+	}
 	http.Redirect(w, r, "/", 302)
 }
 
@@ -119,7 +129,6 @@ func quotesV2GetHandler(w http.ResponseWriter, r *http.Request) {
 		Message:   api.GetQuoteV2(5),
 	}
 	utils.ExecuteTemplate(w, "quotesV2.html", data)
-=======
 	http.Redirect(w, r, "/", 304)
 }
 
@@ -138,7 +147,6 @@ func calandarGetHandler(w http.ResponseWriter, r *http.Request) {
 		NextEventdescription: api.GetEvent()[0][3],
 		UpcommingEvents:      api.GetNextEvent(),
 	})
->>>>>>> 16542a957dfd611c67ff6102b5a45ac80b530e3a
 }
 
 func indexGetHandler(w http.ResponseWriter, r *http.Request) {
