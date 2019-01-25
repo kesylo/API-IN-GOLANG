@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Quotes from api theySaidSo</title>
+    <title>Avni  -  Quotes </title>
     <!-- Bootstrap core CSS -->
     <link href="../static/bootstrap.min.css" rel="stylesheet">
 
@@ -11,18 +11,19 @@
 
   <body class="text-center"></body>
     <div class="cover-container d-flex h-200 p-3 mx-auto flex-column">
-      <header class="masthead mb-auto">
-        <div class="inner">
-          <h3 class="masthead-brand">Avni API</h3>
-        </div>
-      </header>
+      <!--Header-->
+      <div class="page-header">
+        <h1 class="display-1"><p class="text-info">Quotes for students :</p> </h1>
+      </div>
+     
+      <!--Main-->
       <main role="main" class="inner cover">
         <div class="jumbotron">
-            <h1 class="display-3"><p class="text-primary">Quotes:</p></h1>
             <h1 class="display-4"><p class="text-dark">{{ .Quotes }}</p></h1> 
             <h1 class="display-6"><p class="text-dark">{{ .Author }}</p></h1>
             <h1 class="display-6"><p class="text-dark">{{ .Message }}</p></h1>
             <h1 class="display-6"><p class="text-dark">{{ .Imagelink }}</p></h1>
+            <img src="{{ .Imagelink }}" alt="No Img Found" style="width:10%;height:10%">
              
 
         </div>
