@@ -11,3 +11,6 @@ Some instructions to get started
     -  go get -u github.com/tidwall/gjson
     - go get -u google.golang.org/api/calendar/v3
     - go get -u golang.org/x/oauth2/google
+    go get -u github.com/gorilla/mux
+    go get -u github.com/go-redis/redis
+    go get golang.org/x/crypto/bcrypt
